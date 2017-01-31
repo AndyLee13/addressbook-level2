@@ -11,8 +11,12 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-
-    public final String value;
+    
+    
+    private Block block;
+    private Street street;
+    private Unit unit;
+    private PostalCode postalCode;
     private boolean isPrivate;
 
     /**
@@ -26,7 +30,11 @@ public class Address {
         if (!isValidAddress(trimmedAddress)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = trimmedAddress;
+        String[] addressArray = trimmedAddress.split(",");
+        block = new Block(addressArray[0].trim());
+        street = new Street(addressArray[1].trim());
+        unit = new Unit(addressArray[2].trim());
+        postalCode = new PostalCode(addressArray[3].trim());
     }
 
     /**
@@ -38,22 +46,71 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block.getValue()+", " + street.getValue() + ", "
+        			+ unit.getValue() + ", " + postalCode.getValue();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.toString().equals(((Address) other).toString())); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return this.toString().hashCode();
     }
 
     public boolean isPrivate() {
         return isPrivate;
+    }
+    
+    class Block{
+    	private String value;
+    	
+    	public Block(String block){
+    		value = block;
+    	}
+    	
+    	private String getValue(){
+    		return value;
+    	}
+    }
+    
+    class Street{
+    	private String value;
+    	
+    	public Street(String street){
+    		value = street;
+    	}
+    	
+    	private String getValue(){
+    		return value;
+    	}
+    }
+    
+    class Unit{
+    	private String value;
+    	
+    	public Unit(String unit){
+    		value = unit;
+    	}
+    	
+    	private String getValue(){
+    		return value;
+    	}
+    }
+    
+    class PostalCode{
+    	private String value;
+    	
+    	public PostalCode(String postalCode){
+    		value = postalCode;
+    	}
+    	
+    	private String getValue(){
+    		return value;
+    	}
     }
 }
