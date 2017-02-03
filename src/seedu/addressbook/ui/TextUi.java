@@ -37,9 +37,12 @@ public class TextUi {
 
     private final Scanner in;
     private final PrintStream out;
+    private Formatter uiFormatter;
 
     public TextUi() {
         this(System.in, System.out);
+        uiFormatter = new Formatter();
+        
     }
 
     public TextUi(InputStream in, PrintStream out) {
@@ -83,37 +86,23 @@ public class TextUi {
             fullInputLine = in.nextLine();
         }
 
-        showToUser("[Command entered:" + fullInputLine + "]");
+        out.print(uiFormatter.showUserCommand(fullInputLine));
         return fullInputLine;
     }
 
 
     public void showWelcomeMessage(String version, String storageFilePath) {
         String storageFileInfo = String.format(MESSAGE_USING_STORAGE_FILE, storageFilePath);
-        showToUser(
-                DIVIDER,
-                DIVIDER,
-                MESSAGE_WELCOME,
-                version,
-                MESSAGE_PROGRAM_LAUNCH_ARGS_USAGE,
-                storageFileInfo,
-                DIVIDER);
-    }
+        uiFormatter.showWelcomeMessage(version, storageFileInfo);
+        }
 
     public void showGoodbyeMessage() {
-        showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        out.print(uiFormatter.showGoodbyeMessage());;
     }
 
 
     public void showInitFailedMessage() {
-        showToUser(MESSAGE_INIT_FAILED, DIVIDER, DIVIDER);
-    }
-
-    /** Shows message(s) to the user */
-    public void showToUser(String... message) {
-        for (String m : message) {
-            out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
-        }
+        out.print(uiFormatter.showInitFailedMessage());
     }
 
     /**
@@ -125,7 +114,7 @@ public class TextUi {
         if (resultPersons.isPresent()) {
             showPersonListView(resultPersons.get());
         }
-        showToUser(result.feedbackToUser, DIVIDER);
+        out.print(uiFormatter.showResultToUser(result.feedbackToUser));
     }
 
     /**
@@ -163,6 +152,10 @@ public class TextUi {
      */
     private static String getIndexedListItem(int visibleIndex, String listItem) {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
+    }
+    
+    public void showToUser(String... message){
+    	out.print(uiFormatter.showToUser(message));
     }
 
 }
