@@ -1,6 +1,10 @@
 package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.person.Block;
+import seedu.addressbook.data.person.Street;
+import seedu.addressbook.data.person.Unit;
+import seedu.addressbook.data.person.PostalCode;
 
 /**
  * Represents a Person's address in the address book.
@@ -64,53 +68,5 @@ public class Address {
 
     public boolean isPrivate() {
         return isPrivate;
-    }
-    
-    class Block{
-    	private String value;
-    	
-    	public Block(String block){
-    		value = block;
-    	}
-    	
-    	private String getValue(){
-    		return value;
-    	}
-    }
-    
-    class Street{
-    	private String value;
-    	
-    	public Street(String street){
-    		value = street;
-    	}
-    	
-    	private String getValue(){
-    		return value;
-    	}
-    }
-    
-    class Unit{
-    	private String value;
-    	
-    	public Unit(String unit){
-    		value = unit;
-    	}
-    	
-    	private String getValue(){
-    		return value;
-    	}
-    }
-    
-    class PostalCode{
-    	private String value;
-    	
-    	public PostalCode(String postalCode){
-    		value = postalCode;
-    	}
-    	
-    	private String getValue(){
-    		return value;
-    	}
     }
 }
