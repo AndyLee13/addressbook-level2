@@ -13,6 +13,8 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute() {
+    	addressBook.printTaggings();
+    	addressBook.clearTaggings();
         return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
     }
 
