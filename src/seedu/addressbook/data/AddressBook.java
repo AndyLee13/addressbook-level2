@@ -138,13 +138,29 @@ public class AddressBook {
     }
 
     /**
-     * Clears all persons and tags from the address book.
+     * Clears all persons, tags and taggings from the address book.
      */
     public void clear() {
         allPersons.clear();
         allTags.clear();
+        allTaggings.clear();
     }
-
+	/**
+	 * Print the list of taggings 
+	 */
+    public void printTaggings(){
+    	for(Tagging tagging: allTaggings){
+    		System.out.println(tagging.toString());
+    	}
+    }
+    
+    /**
+     * Clear the list of taggings
+     */
+    public void clearTaggings(){
+    	allTaggings.clear();
+    }
+    
     /**
      * Defensively copied UniquePersonList of all persons in the address book at the time of the call.
      */
