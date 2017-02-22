@@ -93,6 +93,17 @@ public class AddressBook {
     public void addTag(Tag toAdd) throws DuplicateTagException {
         allTags.add(toAdd);
     }
+    
+    /**
+     * Adds a tagging to the list of taggings present in the address book
+     * @param person
+     * @param tag
+     * @param taggingType
+     */
+    public void addTagging(Person person, Tag tag, TaggingType taggingType){
+    	Tagging toAdd = new Tagging(person, tag, taggingType);
+    	allTaggings.add(toAdd);
+    }
 
     /**
      * Checks if an equivalent person exists in the address book.
