@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.addressbook.common.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
+
 public class ParserTest {
 
     private Parser parser;
@@ -303,5 +304,17 @@ public class ParserTest {
         final Command result = parser.parseCommand(input);
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));
         return (T) result;
+    }
+    
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    String getPrintableString(Printable... printables){
+    	Set<String> allPrintables = new HashSet<String>();
+    	for(Printable p: printables){
+    		allPrintables.add(p.getPrintableString());
+    	}
+    	String concatenatedString = String.join(", ", allPrintables);
+    	return concatenatedString;
     }
 }
