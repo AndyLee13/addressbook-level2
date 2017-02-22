@@ -1,7 +1,13 @@
 package seedu.addressbook.data.tag;
 import seedu.addressbook.data.person.Person;
 import java.util.ArrayList;
-
+/**
+ * Association Class 
+ * represent an adding or deleting of a tag 
+ * for a specific person that happened during a specific session
+ * @author LiChengcheng
+ *
+ */
 public class Tagging {
 	public enum TaggingType {ADD, DELETE};
 	
