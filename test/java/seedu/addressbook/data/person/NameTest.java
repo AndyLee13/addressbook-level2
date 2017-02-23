@@ -5,11 +5,15 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
+import seedu.addressbook.data.exception.IllegalValueException;
+
 public class NameTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testIsSimilar() throws IllegalValueException{
+		Name name1 = new Name("");
+		Name name2 = new Name("");
+		assertEquals(true, name1.isSimilar(name2));
 	}
 
 }
