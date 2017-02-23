@@ -35,6 +35,9 @@ public class UtilsTest {
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
+        // confirms multiple nulls inside the list are not considered
+        List<Object> multipleNullList = Arrays.asList((Object) null,(Object) null);
+        assertFalse(Utils.isAnyNull(multipleNullList));
     }
 
     @Test
