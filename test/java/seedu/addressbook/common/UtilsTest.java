@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -35,10 +36,15 @@ public class UtilsTest {
         // confirms nulls inside the list are not considered
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
+        
         // confirms multiple nulls inside the list are not considered
         List<Object> multipleNullList = Arrays.asList((Object) null,(Object) null);
         assertFalse(Utils.isAnyNull(multipleNullList));
-    }
+        
+        //confirms nulls inside Arraylist are not considered
+        ArrayList nullArrayList = new ArrayList();
+        assertFalse(Utils.isAnyNull(nullArrayList));
+        }
 
     @Test
     public void elementsAreUnique() throws Exception {
@@ -54,7 +60,11 @@ public class UtilsTest {
         // all objects unique
         assertAreUnique("abc", "ab", "a");
         assertAreUnique(1, 2);
-
+        
+        //Confirms duplicated insidethe list are not considered
+        List<Object> duplicatedList = Arrays.asList("1","1");
+        assertAreUnique(duplicatedList);
+        
         // some identical objects
         assertNotUnique("abc", "abc");
         assertNotUnique("abc", "", "abc", "ABC");
