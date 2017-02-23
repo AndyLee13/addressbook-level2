@@ -47,7 +47,7 @@ public class Name {
      * Returns true if the given name is similar to this
      */
     public boolean isSimilar(Name other){
-    	return false;
+    	return this==other;
     }
 
     @Override
