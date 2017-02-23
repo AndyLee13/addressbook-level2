@@ -19,7 +19,7 @@ public class NameTest {
 		
 		Name fullname1 = new Name("Anthony Davis");
 		assertTrue(fullname1.isSimilar(name1));
-		
+		assertTrue(name1.isSimilar(fullname1));
 	}
 
 }
