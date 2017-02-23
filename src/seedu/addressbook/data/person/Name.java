@@ -47,7 +47,8 @@ public class Name {
      * Returns true if the given name is similar to this
      */
     public boolean isSimilar(Name other){
-    	return this.fullName.contains(other.fullName);
+    	return this.fullName.contains(other.fullName)
+    			||other.fullName.contains(this.fullName);
     }
 
     @Override
